@@ -122,11 +122,11 @@ function OnboardForm({ request, onCancel, onSubmit, pending, error }) {
           <Field label="Principal invested (USD)">
             <input name="principal" type="number" className={inputCls} required />
           </Field>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <Field label="Fixed monthly rate (%)">
+          <div className="flex flex-wrap gap-3">
+            <Field label="Fixed monthly rate (%)" style={{ flex: "1 1 160px" }}>
               <input name="monthlyRate" type="number" step="0.1" defaultValue="4.5" className={inputCls} />
             </Field>
-            <Field label="Lock-in term">
+            <Field label="Lock-in term" style={{ flex: "1 1 160px" }}>
               <select name="lockInMonths" defaultValue="6" className={inputCls}>
                 <option value="3">3 months</option>
                 <option value="6">6 months</option>
