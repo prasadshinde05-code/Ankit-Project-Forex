@@ -14,7 +14,7 @@ export default function LandingPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-3xl">
+      <div className="flex flex-wrap gap-4 w-full max-w-3xl justify-center">
         <LandingCard
           href="/request"
           icon={<Inbox size={22} className="text-white" />}
@@ -43,6 +43,7 @@ function LandingCard({ href, icon, title, desc, highlight }) {
   return (
     <Link
       href={href}
+      style={{ flex: "1 1 220px", maxWidth: 320 }}
       className={`rounded-2xl p-6 flex flex-col gap-3 hover:brightness-95 transition ${
         highlight ? "bg-gold" : "bg-steel"
       }`}
