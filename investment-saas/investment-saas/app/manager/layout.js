@@ -13,23 +13,17 @@ export default async function ManagerLayout({ children }) {
   if (profile?.role !== "manager") redirect("/portal");
 
   return (
-    <div className="min-h-screen flex flex-col sm:flex-row">
-      <div className="w-full sm:w-56 bg-navy p-4 sm:p-5 flex flex-col">
-        <div className="text-gold font-bold text-sm tracking-widest mb-3 sm:mb-8 pl-1 sm:pl-2">MANAGER</div>
-        <nav className="flex flex-row sm:flex-col gap-1 overflow-x-auto -mx-1 px-1 sm:mx-0 sm:px-0">
+    <div className="min-h-screen flex flex-col">
+      <div className="bg-navy px-4 py-3 flex items-center gap-2">
+        <div className="text-gold font-bold text-sm tracking-widest mr-4">MANAGER</div>
+        <nav className="flex flex-row gap-1 overflow-x-auto flex-1">
           <NavLink href="/manager" icon={<LayoutDashboard size={16} />}>Dashboard</NavLink>
           <NavLink href="/manager/requests" icon={<Inbox size={16} />}>Requests</NavLink>
           <NavLink href="/manager/clients" icon={<Users size={16} />}>Clients</NavLink>
-          <div className="sm:hidden ml-auto flex items-center">
-            <SignOutButton />
-          </div>
         </nav>
-        <div className="flex-1 hidden sm:block" />
-        <div className="hidden sm:block">
-          <SignOutButton />
-        </div>
+        <SignOutButton />
       </div>
-      <div className="flex-1 p-4 sm:p-8 max-w-5xl min-w-0">{children}</div>
+      <div className="flex-1 p-4 sm:p-8 max-w-5xl w-full mx-auto">{children}</div>
     </div>
   );
 }
