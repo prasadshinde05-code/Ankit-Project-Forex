@@ -122,7 +122,7 @@ function OnboardForm({ request, onCancel, onSubmit, pending, error }) {
           <Field label="Principal invested (USD)">
             <input name="principal" type="number" className={inputCls} required />
           </Field>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <Field label="Fixed monthly rate (%)">
               <input name="monthlyRate" type="number" step="0.1" defaultValue="4.5" className={inputCls} />
             </Field>
