@@ -86,7 +86,7 @@ export default async function InvestorPortalPage() {
           {withUrls.length === 0 ? (
             <p className="text-sm text-muted">No transactions recorded yet.</p>
           ) : (
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
               {withUrls.map((t) => (
                 <div key={t.id} className="border border-line rounded-lg overflow-hidden">
                   {t.signedUrl ? (
