@@ -21,7 +21,7 @@ export default async function ManagerDashboard() {
   return (
     <>
       <h2 className="text-xl font-bold text-ink mb-5">Dashboard</h2>
-      <div className="grid grid-cols-3 gap-4 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
         <StatCard label="Assets under management" value={fmtMoney(totalAUM)} icon={<TrendingUp size={18} className="text-gold" />} />
         <StatCard label="Active clients" value={activeCount} icon={<Users size={18} className="text-gold" />} />
         <StatCard label="Pending requests" value={requests?.length || 0} icon={<Inbox size={18} className="text-gold" />} />
