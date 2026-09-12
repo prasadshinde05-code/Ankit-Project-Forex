@@ -1,6 +1,6 @@
-export function Card({ children, className = "" }) {
+export function Card({ children, className = "", style }) {
   return (
-    <div className={`bg-white border border-line rounded-xl p-5 ${className}`}>
+    <div className={`bg-white border border-line rounded-xl p-5 ${className}`} style={style}>
       {children}
     </div>
   );
@@ -24,9 +24,9 @@ export function Btn({ children, variant = "primary", className = "", ...props })
   );
 }
 
-export function Field({ label, children }) {
+export function Field({ label, children, style }) {
   return (
-    <label className="block mb-4">
+    <label className="block mb-4" style={style}>
       <span className="block text-xs font-semibold text-muted mb-1">{label}</span>
       {children}
     </label>
