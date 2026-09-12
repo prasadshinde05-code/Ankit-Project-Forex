@@ -38,8 +38,8 @@ export default function ClientDetailClient({ investment, profile, transactions }
         <h2 className="text-xl font-bold text-ink">{profile?.full_name || "Client"}</h2>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-        <Card>
+      <div className="flex flex-wrap gap-4 mb-4">
+        <Card style={{ flex: "1 1 280px", minWidth: 280 }}>
           <div className="text-xs text-muted mb-1">Live balance</div>
           <div className="text-3xl font-bold text-navy">{fmtMoney(perf.balance)}</div>
           <div className="text-sm text-muted mb-3">
@@ -52,7 +52,7 @@ export default function ClientDetailClient({ investment, profile, transactions }
           </div>
         </Card>
 
-        <Card>
+        <Card style={{ flex: "1 1 280px", minWidth: 280 }}>
           <div className="text-xs text-muted mb-2">Client details</div>
           <div className="text-sm text-ink font-semibold">{profile?.full_name}</div>
           <div className="text-sm text-muted">{profile?.email || "—"} {profile?.phone && `· ${profile.phone}`}</div>
@@ -78,9 +78,9 @@ export default function ClientDetailClient({ investment, profile, transactions }
         {txs.length === 0 ? (
           <p className="text-sm text-muted">No transactions recorded yet.</p>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div className="flex flex-wrap gap-3">
             {txs.map((t) => (
-              <div key={t.id} className="border border-line rounded-lg overflow-hidden">
+              <div key={t.id} className="border border-line rounded-lg overflow-hidden" style={{ flex: "1 1 140px", minWidth: 140, maxWidth: 200 }}>
                 {t.signedUrl ? (
                   <img src={t.signedUrl} alt={t.type} className="w-full h-24 object-cover" />
                 ) : (
@@ -115,15 +115,15 @@ function AddTransactionForm({ onCancel, onSave, pending, error }) {
   return (
     <Card className="mb-4 bg-offwhite">
       <form onSubmit={handleSubmit}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <Field label="Type">
+        <div className="flex flex-wrap gap-3">
+          <Field label="Type" style={{ flex: "1 1 160px" }}>
             <select name="type" className={inputCls} defaultValue="payout">
               <option value="payout">Payout</option>
               <option value="deposit">Deposit</option>
               <option value="adjustment">Adjustment</option>
             </select>
           </Field>
-          <Field label="Amount (USD)">
+          <Field label="Amount (USD)" style={{ flex: "1 1 160px" }}>
             <input name="amount" type="number" className={inputCls} required />
           </Field>
         </div>
