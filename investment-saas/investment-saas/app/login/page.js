@@ -25,24 +25,21 @@ function LoginForm() {
   const [show, setShow] = useState(false);
   const [error, setError] = useState("");
   const [pending, setPending] = useState(false);
-  const [debugInfo, setDebugInfo] = useState(null); // TEMPORARY — remove after diagnosing
 
   async function onSubmit(e) {
     e.preventDefault();
     setPending(true);
     setError("");
-    setDebugInfo(null);
     const supabase = createClient();
 
     const { data, error: signInError } = await supabase.auth.signInWithPassword({ email, password });
     if (signInError) {
       setPending(false);
       setError("Incorrect email or password.");
-      setDebugInfo({ step: "signIn", error: signInError.message });
       return;
     }
 
-    const { data: profile, error: profileError } = await supabase
+    const { data: profile } = await supabase
       .from("profiles")
       .select("role")
       .eq("id", data.user.id)
@@ -50,15 +47,8 @@ function LoginForm() {
 
     setPending(false);
 
-    // TEMPORARY DEBUG — shows exactly what the app sees, then stops instead
-    // of redirecting, so this can be read/screenshotted before navigating away.
-    setDebugInfo({
-      step: "profile lookup",
-      userId: data.user.id,
-      userEmail: data.user.email,
-      profile,
-      profileError: profileError ? profileError.message : null,
-    });
+    if (profile?.role === "manager") router.push("/manager");
+    else router.push("/portal");
   }
 
   return (
@@ -95,11 +85,6 @@ function LoginForm() {
               </div>
             </Field>
             {error && <p className="text-danger text-sm mb-3">{error}</p>}
-            {debugInfo && (
-              <pre className="text-[10px] bg-slate-100 text-ink p-3 rounded-lg mb-3 overflow-x-auto whitespace-pre-wrap break-all">
-                {JSON.stringify(debugInfo, null, 2)}
-              </pre>
-            )}
             <Btn type="submit" disabled={pending} className="w-full">
               {pending ? "Signing in…" : "Sign in"}
             </Btn>
